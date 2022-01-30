@@ -17,7 +17,7 @@ class ProfileController extends Controller
     public function getPopularProfiles(Request $request)
     {
         $limit = $request->search_term ? null : 18;
-        $profiles = Profile::orderBy('followers', 'DESC')->where('username', 'LIKE', '%' . $request->search_term . '%')->limit($limit)->get();
+        $profiles = Profile::orderBy('followers', 'DESC')->where('username', 'LIKE', '%' . $request->search_term . '%')->where('id', '<>', $request->profile_id)->limit($limit)->get();
         return response()->json(['profiles' => $profiles]);
     }
 

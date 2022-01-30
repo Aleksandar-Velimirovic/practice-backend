@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use App\Models\Profile;
 use App\User;
-use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LoginController extends Controller
 {
-    public function authenticate(Request $request)
+    public function authenticate(LoginRequest $request)
     {
         $credentials = $request->only(['email', 'password']);
 
